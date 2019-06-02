@@ -7,7 +7,13 @@ def main():
     return render_template('index(1).html')
 @app.route("/login/")
 def login():
-    return render_template('login.html')
+    return render_template('register-1.html')
+
+
+
+
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug =True)
+
+
