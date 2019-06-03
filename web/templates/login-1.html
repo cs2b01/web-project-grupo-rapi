@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>FastFud Perú - Login</title>
+		<meta charset="utf-8"/>
+		<link rel='icon' href='img/Favicon.png' type='image/x-icon'/>
+		<link href="css/estilos.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	</head>
+	<body>
+		<div align="center">
+			<table class="container">
+				<tbody>
+					<tr>
+						<td id="LGimg">
+							<img src="https://truffle-assets.imgix.net/e8a136d5-thumb-p.jpg"/>
+						</td>
+						<td align="center" class="Rspace">
+							<form name="form" class="form">
+					  			<p align="center" class="logoBg">
+					  				<br>
+					  				<img src="img/Logo.png" width="35%"/>
+					  				<br>
+					  				FastFud Perú
+					  				<br>
+					  				<br>
+					  			</p>
+					  			<p align="left"><input type="text" id= "username" name = "username"></p>
+						  		<p align="left"><input type="password" name = "password" id = "password"></p>
+								<input type = "button" value = "login" onclick="getData()"/>
+					  		</form>
+
+							<script>
+    function getData(){
+        var username = $('#username').val();
+        var password = $('#password').val();
+        $('#action').html("Authenticating...");
+        var message = JSON.stringify({
+           "username" : username,
+           "password" : password
+           });
+
+    $.ajax({
+        url:'/authenticate',
+        type: 'POST',
+        contentType: 'application/json',
+        data: message,
+        dataType: 'json',
+        success: function(response){
+            alert(JSON.stringify(response));
+            },
+        error: function(response){
+            alert(JSON.stringify(response));
+            }
+        });
+    }
+
+</script>
+					  		<p align="center" id="Options">
+						  		<br>
+						  		<strong>¿No puedes ingresar?</strong>&nbsp<input onclick="recover()" type="button" value="Ayuda.">
+						  		<br>
+						  		<br>
+						  		<strong>¿No tienes cuenta?</strong>&nbsp<input onclick="register()" type="button" value="Regístrate.">
+						  		<br>
+						  		<br>
+					  		</p>
+					 	</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
