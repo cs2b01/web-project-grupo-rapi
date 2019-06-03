@@ -13,8 +13,8 @@ class User(connector.Manager.Base):
     #type = Column(String(12)) - Esto debería ir para asignar un tipo de user (cliente, admin o repartidor)
 
 class Pedido(connector.Manager.Base):
-    __tablename__ = 'users'
-    id = Column(Integer, Sequence('user_id_seq'), primary_key = True)
+    __tablename__ = 'Pedido'
+    id = Column(Integer, Sequence('pedido_id_seq'), primary_key = True)
     pedido = Column(String(50))
     direccion = Column(String(50))
     fecha = Column(String(12))
