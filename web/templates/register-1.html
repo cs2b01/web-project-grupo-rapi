@@ -11,8 +11,9 @@
 
 		<link rel='icon' href='img/Favicon.png' type='image/x-icon'/>
 		<link href="css/estilos.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-		<script src="js/functions.js"></script>
+		<script src="/static/functions.js"></script>
 	</head>
 	<body>
 		<div align="center">
@@ -26,29 +27,24 @@
 							<form name="form" class="form" style="font-size: 13px; padding-right: 30px;">
 								<p align="left" style="font-size: 16px; color: rgb(178,119,42);"><strong>&nbsp&nbsp&nbsp&nbspREGISTRO:</strong></p>
 								<p align="center" id="fillspaces" class="alert"><strong>Rellene los espacios en blanco.</strong></p>
-								<p align="left"><strong>Correo electrónico:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</strong><input type="text" name="email"></p>
-								<p align="left"><strong>Contraseña:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</strong><input onkeyup="compare()" type="text" name="password1"></p>
-								<p align="left"><strong>Confirmar contraseña:&nbsp&nbsp</strong><input onkeyup="compare()" type="text" name="password2"></p>
-								<!--Las contraseñas no coinciden-->
-								<p id="unequalpassword" class="alert" align="center"><strong>&nbsp&nbspLos campos no coinciden.</strong></p><br>
-								<!---->
+								<p align="left"><strong >Username:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</strong><input id="register_user" type="text" name="email"></p>
+								<p align="left"><strong >Nombre:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</strong><input id="register_name" onkeyup="compare()" type="text" name="password1"></p>
+								<p align="left"><strong>Contraseña:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</strong><input id="register_password" onkeyup="compare()" type="text" name="password2"></p>
+
 								<div align="center">
 									<strong>Categoría:&nbsp</strong>
-									<select onchange="workercode()" name="categoría" id="categoría">
+									<select name="categoría" id="categoria">
 										<option value="" selected></option>
-										<option value="client">Cliente</option>
-										<option value="deliver">Repartidor</option>
-										<option value="admin">Administrador</option>							
+										<option value="Cliente">Cliente</option>
+										<option value="Repartidor">Repartidor</option>
+										<option value="Administrador">Administrador</option>
 									</select>
 								</div>
-								<p id="validworker" align="center">
-									<strong>Ingrese código de trabajador:&nbsp&nbsp</strong><input type="text" size="10" name="validworker">
-								</p>
 								<p style="font-size: 14px;">
 									<input type="checkbox" name="accept" id="accept">&nbspAcepto los términos y condiciones.
 								</p>
 								<p align="right">
-									<input onclick="endregister()" type="button" value="Completar registro.">
+									<input onclick="register()" type="button" value="Completar registro.">
 								</p>
 							</form>
 							<br>

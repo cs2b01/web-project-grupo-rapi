@@ -7,7 +7,7 @@ class User(connector.Manager.Base):
     __tablename__ = 'users'
     id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
     name = Column(String(50))
-    fullname = Column(String(50))
+    tipo = Column(String(50))
     password = Column(String(12))
     username = Column(String(12))
     #type = Column(String(12)) - Esto debería ir para asignar un tipo de user (cliente, admin o repartidor)

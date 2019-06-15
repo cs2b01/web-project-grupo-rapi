@@ -80,11 +80,11 @@ def delete_user():
 
 @app.route('/users', methods = ['POST'])
 def create_user():
-    c =  json.loads(request.form['values'])
+    c =json.loads(request.data)
     user = entities.User(
         username=c['username'],
         name=c['name'],
-        fullname=c['fullname'],
+        tipo=c['type'],
         password=c['password']
     )
     session = db.getSession(engine)

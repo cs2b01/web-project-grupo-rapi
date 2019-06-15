@@ -38,7 +38,7 @@ $(function(){
         }, {
             dataField: "name"
         }, {
-            dataField: "fullname"
+            dataField: "tipo"
         }, {
             dataField: "password"
         }, ],
