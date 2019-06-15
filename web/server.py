@@ -38,6 +38,7 @@ def authenticate():
             ).filter(entities.User.username == username
             ).filter(entities.User.password == password
             ).one()
+        session['logged_user'] = user.id
         message = {'message' : 'Authorized'}
         return Response(message, status=200, mimetype='application/json')
     except Exception:

@@ -18,3 +18,58 @@ function register(){
                      dataType:'json'
                    });
 }
+
+				function redirigir(tipo){
+
+							}
+
+    function getData(){
+        var username = $('#username').val();
+        var password = $('#password').val();
+        $('#action').html("Authenticating...");
+        var message = JSON.stringify({
+           "username" : username,
+           "password" : password
+           });
+           alert(message);
+
+    $.ajax({
+        url:'/authenticate',
+        type: 'POST',
+        contentType: 'application/json',
+        data: message,
+        dataType: 'json',
+        success: function(response){
+            alert(JSON.stringify(response));
+            whoami();
+            },
+        error: function(response){
+            alert(JSON.stringify(response));
+            whoami();
+            }
+        });
+    }
+
+    function whoami(){
+        $.ajax({
+            url:'/current',
+            type:'GET',
+            contentType: 'application/json',
+            dataType:'json',
+            success: function(response){
+
+                if(response['tipo']=="Cliente"){
+                 document.location.href="index(1).html";
+                }
+                 if(response['tipo']=="Repartidor"){
+                 document.location.href="index(2).html";
+                }
+                 if(response['tipo']=="Administrador"){
+                 document.location.href="index(3).html";
+                }
+
+            },
+            error: function(response){
+            }
+        });
+    }
