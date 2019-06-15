@@ -18,6 +18,12 @@ def index():
 def static_content(content):
     return render_template(content)
 
+@app.route('/current', methods = ['GET'])
+def current_user():
+    db_session = db.getSession(engine)
+    user = db_session.query(entities.User).filter(entities.User.id == session['logged_user']).first()
+    return Response(json.dumps(user,cls=connector.AlchemyEncoder),mimetype='application/json')
+
 @app.route('/authenticate', methods = ['POST'])
 def authenticate():
     message = json.loads(request.data)

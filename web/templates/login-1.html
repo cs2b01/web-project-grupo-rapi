@@ -50,6 +50,9 @@
         dataType: 'json',
         success: function(response){
             alert(JSON.stringify(response));
+            if(response[tipo] == "Cliente"){
+            location.href="index(1).html";
+            };
             },
         error: function(response){
             alert(JSON.stringify(response));
