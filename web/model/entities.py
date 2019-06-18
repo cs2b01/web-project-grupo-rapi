@@ -16,6 +16,7 @@ class Pedido(connector.Manager.Base):
     __tablename__ = 'Pedido'
     id = Column(Integer, Sequence('pedido_id_seq'), primary_key = True)
     pedido = Column(String(50))
+    usuario = Column(String(50))
     direccion = Column(String(50))
     fecha = Column(String(12))
     estado = Column(String(12)) #Pendiente o realizado

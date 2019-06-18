@@ -18,6 +18,11 @@ def index():
 def static_content(content):
     return render_template(content)
 
+@app.route('/logout')
+def logout():
+    session['logged_user'] = "";
+    return "LOGOUT"
+
 @app.route('/current', methods = ['GET'])
 def current_user():
     db_session = db.getSession(engine)
@@ -55,6 +60,25 @@ def get_users():
         data.append(user)
     return Response(json.dumps(data, cls=connector.AlchemyEncoder), mimetype='application/json')
 
+@app.route('/pedidos', methods = ['GET'])
+def get_pedidos():
+    session = db.getSession(engine)
+    dbResponse = session.query(entities.Pedido)
+    data = []
+    for pedido in dbResponse:
+        data.append(pedido)
+    return Response(json.dumps(data, cls=connector.AlchemyEncoder), mimetype='application/json')
+
+@app.route('/pedidos/<usuario>', methods = ['GET'])
+def get_pedido(usuario):
+    db_session = db.getSession(engine)
+    pedidos = db_session.query(entities.Pedido).filter(entities.Pedido.usuario == usuario)
+    data=[]
+    for pedido in pedidos:
+        data.append(pedido)
+    return Response(json.dumps(data, cls=connector.AlchemyEncoder), mimetype='application/json')
+
+
 @app.route('/create_test_users', methods = ['GET'])
 def create_test_users():
     db_session = db.getSession(engine)
@@ -62,6 +86,29 @@ def create_test_users():
     db_session.add(user)
     db_session.commit()
     return "Test user created!"
+
+@app.route('/create_test_pedido', methods = ['GET'])
+def create_test_pedido():
+    db_session = db.getSession(engine)
+    pedido = entities.Pedido(pedido="Pollo a la brasa", usuario="jpomar", direccion="Jr. Moreyra y Riglos 429", fecha="18/06/2019", estado="PENDIENTE")
+    db_session.add(pedido)
+    db_session.commit()
+    return "Ala orden!"
+
+@app.route('/createPedido', methods = ['POST'])
+def createPedido():
+        c = json.loads(request.data)
+        pedido = entities.Pedido(
+            pedido=c['pedido'],
+            usuario=c['usuario'],
+            direccion=c['direccion'],
+            estado="PENDIENTE"
+        )
+        session = db.getSession(engine)
+        session.add(pedido)
+        session.commit()
+        return 'Created User'
+
 
 @app.route('/users', methods = ['PUT'])
 def update_user():

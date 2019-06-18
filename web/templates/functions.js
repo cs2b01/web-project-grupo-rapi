@@ -9,7 +9,6 @@ function register(){
                     "password": password,
                     "type": type
                 });
-    alert(message);
     $.ajax({
                      url:'http://127.0.0.1:8080/users',
                      type:'POST',
@@ -31,7 +30,6 @@ function register(){
            "username" : username,
            "password" : password
            });
-           alert(message);
 
     $.ajax({
         url:'/authenticate',
@@ -40,11 +38,9 @@ function register(){
         data: message,
         dataType: 'json',
         success: function(response){
-            alert(JSON.stringify(response));
             whoami();
             },
         error: function(response){
-            alert(JSON.stringify(response));
             whoami();
             }
         });
@@ -73,3 +69,4 @@ function register(){
             }
         });
     }
+

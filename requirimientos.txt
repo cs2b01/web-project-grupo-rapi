@@ -1,4 +1,0 @@
-Flask
-Sqlalchemy
-#PRUEBA
-#HOla
