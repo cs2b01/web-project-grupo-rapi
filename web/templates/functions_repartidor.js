@@ -127,15 +127,48 @@ $.ajax({
 }
 
 function aceptar(){
+
     var id_pedido = $('#idpedido').val();
     $.ajax({
     url: '/pedidos/id/'+id_pedido,
     type: 'DELETE',
     contentType: 'application/json',
+    success: function(){
+    alert("Hola");
+   },
+    error:function(){
+    alert("Hola");
+    }
+    });
+}
+
+function recogerPedido(id){
+ $.ajax({
+    url: '/pedidos/get/'+id_pedido,
+    type: 'GET',
+    contentType: 'application/json',
     success: function(response){
-        alert("DELETED");
+    alert(response);
+   },
+    error:function(response){
+    alert(response);
+    }
+    });
+}
+
+
+
+function createPedido2(response){
+$.ajax({
+    url: '/createPedido2',
+    type: 'POST',
+    contentType: 'application/json',
+    data: response,
+    dataType: 'json',
+    success: function(response){
+    alert("HOls")
    },
     error:function(response){
     }
-    })
+    });
 }

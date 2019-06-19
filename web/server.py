@@ -86,7 +86,6 @@ def get_pedido_id(id):
     for pedido in pedidos:
         db_session.delete(pedido)
         db_session.commit()
-
     return "DELETED"
 
 
@@ -120,6 +119,19 @@ def createPedido():
         session.commit()
         return 'Created User'
 
+@app.route('/createPedido2', methods = ['POST'])
+def createPedido2():
+        c = json.loads(request.data)
+        pedido = entities.Pedido2(
+            pedido=c['pedido'],
+            usuario=c['usuario'],
+            direccion=c['direccion'],
+            estado="REALIZADO"
+        )
+        session = db.getSession(engine)
+        session.add(pedido)
+        session.commit()
+        return 'Created User'
 
 
 @app.route('/users', methods = ['PUT'])
@@ -156,6 +168,16 @@ def delete_pedido():
         return "DELETED"
     except:
         return "FAIL"
+
+@app.route('/pedidos/get/<id>', methods = ['GET'])
+def get_pedido_byID(id):
+    session = db.getSession(engine)
+    pedidos = session.query(entities.Pedido).filter(entities.Pedido.id == id)
+    for pedido in pedidos:
+        js = json.dumps(pedido, cls=connector.AlchemyEncoder)
+        return Response(js, status=200, mimetype='application/json')
+    message = {'status': 404, 'message': 'Not Found'}
+    return Response(message, status=404, mimetype='application/json')
 
 
 @app.route('/users', methods = ['POST'])

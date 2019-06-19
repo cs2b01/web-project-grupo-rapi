@@ -19,3 +19,12 @@ class Pedido(connector.Manager.Base):
     direccion = Column(String(50))
     fecha = Column(String(12))
     estado = Column(String(12))
+
+class Pedido2(connector.Manager.Base):
+    __tablename__ = 'Pedido2'
+    id = Column(Integer, Sequence('pedido2_id_seq'), primary_key = True)
+    pedido = Column(String(50))
+    usuario = Column(String(50))
+    direccion = Column(String(50))
+    fecha = Column(String(12))
+    estado = Column(String(12))
