@@ -10,7 +10,6 @@ class User(connector.Manager.Base):
     tipo = Column(String(50))
     password = Column(String(12))
     username = Column(String(12))
-    #type = Column(String(12)) - Esto debería ir para asignar un tipo de user (cliente, admin o repartidor)
 
 class Pedido(connector.Manager.Base):
     __tablename__ = 'Pedido'
@@ -19,4 +18,4 @@ class Pedido(connector.Manager.Base):
     usuario = Column(String(50))
     direccion = Column(String(50))
     fecha = Column(String(12))
-    estado = Column(String(12)) #Pendiente o realizado
+    estado = Column(String(12))

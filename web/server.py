@@ -78,6 +78,17 @@ def get_pedido(usuario):
         data.append(pedido)
     return Response(json.dumps(data, cls=connector.AlchemyEncoder), mimetype='application/json')
 
+@app.route('/pedidos/id/<id>', methods = ['DELETE'])
+def get_pedido_id(id):
+    db_session = db.getSession(engine)
+    pedidos = db_session.query(entities.Pedido).filter(entities.Pedido.id == id)
+    data=[]
+    for pedido in pedidos:
+        db_session.delete(pedido)
+        db_session.commit()
+
+    return "DELETED"
+
 
 @app.route('/create_test_users', methods = ['GET'])
 def create_test_users():
@@ -110,6 +121,7 @@ def createPedido():
         return 'Created User'
 
 
+
 @app.route('/users', methods = ['PUT'])
 def update_user():
     session = db.getSession(engine)
@@ -131,6 +143,20 @@ def delete_user():
         session.delete(user)
     session.commit()
     return "Deleted Message"
+
+@app.route('/deletepedidos', methods = ['DELETE'])
+def delete_pedido():
+    session = db.getSession(engine)
+    c = json.loads(request.data)
+    pedido = session.query(entities.Pedido).filter(entities.Pedido.id == c['id'])
+
+    try:
+        session.delete(pedido)
+        session.commit()
+        return "DELETED"
+    except:
+        return "FAIL"
+
 
 @app.route('/users', methods = ['POST'])
 def create_user():

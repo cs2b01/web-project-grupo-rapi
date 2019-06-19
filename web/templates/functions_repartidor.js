@@ -125,3 +125,17 @@ $.ajax({
     }
     });
 }
+
+function aceptar(){
+    var id_pedido = $('#idpedido').val();
+    $.ajax({
+    url: '/pedidos/id/'+id_pedido,
+    type: 'DELETE',
+    contentType: 'application/json',
+    success: function(response){
+        alert("DELETED");
+   },
+    error:function(response){
+    }
+    })
+}
